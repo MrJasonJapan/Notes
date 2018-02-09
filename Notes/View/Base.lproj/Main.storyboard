@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Notes" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" largeTitles="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7YK-zg-D3w">
+                                <rect key="frame" x="0.0" y="20" width="375" height="96"/>
+                                <color key="barTintColor" red="0.96962696313858032" green="0.82613617181777954" blue="0.29768502712249756" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <items>
+                                    <navigationItem title="Notes" id="cAy-bT-JTf">
+                                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="JYh-Uu-HZa">
+                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <connections>
+                                                <action selector="onComposeTapped" destination="BYZ-38-t0r" id="pBs-pt-6lE"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SoO-ys-Ogm">
+                                <rect key="frame" x="0.0" y="116" width="375" height="551"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="mzZ-O4-UJz"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="SoO-ys-Ogm" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="0hd-g2-1qA"/>
+                            <constraint firstItem="7YK-zg-D3w" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="GrU-w5-4be"/>
+                            <constraint firstItem="SoO-ys-Ogm" firstAttribute="top" secondItem="7YK-zg-D3w" secondAttribute="bottom" id="KKf-9v-pII"/>
+                            <constraint firstItem="7YK-zg-D3w" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="SIM-zs-Sbq"/>
+                            <constraint firstItem="7YK-zg-D3w" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="20" id="kXj-zr-a2P"/>
+                            <constraint firstItem="SoO-ys-Ogm" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="smi-an-jgU"/>
+                            <constraint firstItem="SoO-ys-Ogm" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="uyV-bJ-uFw"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="SoO-ys-Ogm" id="Jel-ee-720"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="140" y="132.68365817091455"/>
+        </scene>
+    </scenes>
+</document>
