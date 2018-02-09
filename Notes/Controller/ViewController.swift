@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CloudKit
 
 class ViewController: UIViewController {
 
@@ -17,7 +18,16 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        CKService.shared.subscribe()
+        
         getNotes()
+        
+        // start watching for when a record gets sent from our 'internal' notification
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(handleFetch(_:)),
+                                               name: NSNotification.Name("internalNotification.fetchedRecord"),
+                                               object: nil)
     }
     
     func getNotes() {
@@ -33,11 +43,11 @@ class ViewController: UIViewController {
             // save our note to iCloud
             CKService.shared.save(record: note.noteRecord())
             // insert our note to local memory (notes) and instruct table view to set it's current index to row 0
-            self.insertNote(note: note)
+            self.insert(note: note)
         }
     }
     
-    func insertNote(note: Note) {
+    func insert(note: Note) {
         // insert note into our Model Object.
         notes.insert(note, at: 0)
         
@@ -46,7 +56,17 @@ class ViewController: UIViewController {
         tableView.insertRows(at: [indexPath], with: .automatic)
         
         // our TableView's delegate functions will handle the rest.
+    }
+    
+    @objc
+    func handleFetch(_ sender: Notification) {
+        guard
+            let record = sender.object as? CKRecord,
+            let note = Note(record: record)
+            else { return }
         
+        // persist the note to our model (notes) and insert the note into the top of our tableView.
+        insert(note: note)
     }
 }
 
