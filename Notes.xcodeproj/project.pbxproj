@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9654EF01202D6C870037BF76 /* NotesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9654EF00202D6C870037BF76 /* NotesService.swift */; };
 		966668D9202D438400A80485 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966668D8202D438400A80485 /* AppDelegate.swift */; };
 		966668DB202D438400A80485 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966668DA202D438400A80485 /* ViewController.swift */; };
 		966668DE202D438400A80485 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 966668DC202D438400A80485 /* Main.storyboard */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9654EF00202D6C870037BF76 /* NotesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesService.swift; sourceTree = "<group>"; };
 		966668D5202D438400A80485 /* Notes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Notes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		966668D8202D438400A80485 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		966668DA202D438400A80485 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 			children = (
 				966668F0202D495800A80485 /* AlertService.swift */,
 				966668F6202D5F6900A80485 /* CKService.swift */,
+				9654EF00202D6C870037BF76 /* NotesService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -202,6 +205,7 @@
 				966668DB202D438400A80485 /* ViewController.swift in Sources */,
 				966668D9202D438400A80485 /* AppDelegate.swift in Sources */,
 				966668F7202D5F6900A80485 /* CKService.swift in Sources */,
+				9654EF01202D6C870037BF76 /* NotesService.swift in Sources */,
 				966668F1202D495800A80485 /* AlertService.swift in Sources */,
 				966668EF202D47F400A80485 /* Note.swift in Sources */,
 			);

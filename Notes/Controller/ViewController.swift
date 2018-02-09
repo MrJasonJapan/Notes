@@ -17,6 +17,15 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        getNotes()
+    }
+    
+    func getNotes() {
+        NotesService.getNotes { (notes) in
+            self.notes = notes
+            // bind the datasource to our tableView
+            self.tableView.reloadData()
+        }
     }
 
     @IBAction func onComposeTapped() {

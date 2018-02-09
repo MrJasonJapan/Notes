@@ -23,4 +23,19 @@ class CKService {
             print(record ?? "error: no CloudKit Record saved")
         }
     }
+    
+    // NSPredicate(value: true) means "just give us everything"
+    func query(recordType: String, completion: @escaping ([CKRecord]) -> Void) {
+        let query = CKQuery(recordType: recordType, predicate: NSPredicate(value: true))
+        
+        privateDatabae.perform(query, inZoneWith: nil) { (records, error) in
+            print(error ?? "error: CKQuery failed")
+            guard let records = records else { return }
+            // do a dispach bacause we are working witn an Asynchronous call
+            DispatchQueue.main.async {
+                completion(records)
+            }
+            
+        }
+    }
 }
