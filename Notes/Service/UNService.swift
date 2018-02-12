@@ -37,12 +37,16 @@ extension UNService: UNUserNotificationCenterDelegate {
         
         print("un did receive")
         
+        CKService.shared.handleNotification(with: response.notification.request.content.userInfo)
+        
         completionHandler()
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         
         print("un will present")
+        
+        CKService.shared.handleNotification(with: notification.request.content.userInfo)
         
         // don't need badges when our app is in the foreground
         let options: UNNotificationPresentationOptions = [.alert, .sound]
