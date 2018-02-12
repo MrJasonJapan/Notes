@@ -19,7 +19,10 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        CKService.shared.subscribe()
+        //CKService.shared.subscribe()
+        CKService.shared.subscribeWithUI()
+        
+        UNService.shared.authroize()
         
         getNotes()
         

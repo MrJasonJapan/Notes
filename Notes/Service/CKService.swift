@@ -15,12 +15,12 @@ class CKService {
     // set our singleton
     static let shared = CKService()
     
-    let privateDatabae = CKContainer.default().privateCloudDatabase
+    let privateDatabase = CKContainer.default().privateCloudDatabase
     
     func save(record: CKRecord) {
-        privateDatabae.save(record) { (record, error) in
-            print(error ?? "error: can't save to CloudKit")
-            print(record ?? "error: no CloudKit Record saved")
+        privateDatabase.save(record) { (record, error) in
+            print(error ?? "error: no save to CK error")
+            print(record ?? "error: no CK record error")
         }
     }
     
@@ -28,7 +28,7 @@ class CKService {
     func query(recordType: String, completion: @escaping ([CKRecord]) -> Void) {
         let query = CKQuery(recordType: recordType, predicate: NSPredicate(value: true))
         
-        privateDatabae.perform(query, inZoneWith: nil) { (records, error) in
+        privateDatabase.perform(query, inZoneWith: nil) { (records, error) in
             print(error ?? "No CKQuery error")
             guard let records = records else { return }
             // do a dispach bacause we are working witn an Asynchronous call
@@ -50,17 +50,38 @@ class CKService {
         
         subscribtion.notificationInfo = notificationInfo
         
-        privateDatabae.save(subscribtion) { (sub, error) in
+        privateDatabase.save(subscribtion) { (sub, error) in
             print(error ?? "No CKQueryScription error")
             print(sub ?? "No subscription error")
         }
         
     }
     
+    func subscribeWithUI() {
+        let subscribtion = CKQuerySubscription(recordType: Note.recordType,
+                                               predicate: NSPredicate(value: true),
+                                               options: .firesOnRecordCreation)
+        
+        let notificationInfo = CKNotificationInfo()
+        // These only work from iOS 11.0 and later.
+        notificationInfo.title = "This is cool"
+        notificationInfo.subtitle = "A Whole New iCloud"
+        notificationInfo.alertBody = "I bet ya didn't you know about the power of the cloud."
+        notificationInfo.shouldBadge = true
+        notificationInfo.soundName = "default"
+        
+        subscribtion.notificationInfo = notificationInfo
+        
+        privateDatabase.save(subscribtion) { (sub, error) in
+            print(error ?? "No CKQueryScription error")
+            print(sub ?? "No subscription error")
+        }
+    }
+    
     // use to fetch the actual record with regards to the recordId that iCloud pushed us via didReceiveRemoteNotification
     func fetchRecord(with recordId: CKRecordID) {
         
-        privateDatabae.fetch(withRecordID: recordId) { (record, error) in
+        privateDatabase.fetch(withRecordID: recordId) { (record, error) in
             print(error ?? "No CK fetch error")
             guard let record = record else { return }
             
